@@ -13,7 +13,16 @@ bibliography: references.bib
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+\newpage
+
 # Introduction
+Local businesses, especially restaurants, are the soul of many cities, providing not just a source of food, but also culinary diversity, culture, and employment for the population. In fact, these restaurants are vital contributors to the local community, donating to food banks, hosting fundraisers, and much more. Hence, with the presence of COVID-19, it is clear why the Ontario government would want to understand more about the potential effects a shutdown could have on the restaurants. Nevertheless, limiting the spread of this virus should be a top priority, but shutting down restaurants could have an immense effect on the local community, and hence affect the livelihoods of many Ontario residents. After all, many other factors have already had an adverse impact on the restaurant industry. For instance, studies like the “COVID-19 and restaurant demand: Early effects of the pandemic and stay-at-home orders” [@citeLit1] have shown that a 1% increase in new COVID cases results in 0.0556% of daily restaurant demand, while stay-at-home orders have been associated with a decrease of 3.30% in restaurant demand.
+
+Therefore, this paper will focus on examining the effects of COVID shutdowns on restaurants, taking into account factors such as the net profit/loss of the businesses, the permanent closure of the restaurant, number of employees, wages, and food price. After all, shutting down a restaurant does not just affect the restaurant owners, as people may lose their jobs, have their wage/salary decrease, and prices for food may increase to compensate for losses.
+
+For this research, we will first describe the intervention of this experiment where randomized controlled trial testing will be conducted on a sample of the restaurant population in Ontario. The methodology involved will then be defined, illustrating how we will be observing the restaurants, what will be measured, the population and sample of the experiment, and the predicted cost of gathering the data. At last, upon denoting all the details of our experiment’s intervention method and survey methodology, we will be exploring our findings of the effects of COVID shutdowns on restaurants in the discussion section. All in all, this study will highlight the potential losses in profits and employment caused by restaurant shutdowns, helping Ontario government officials make better-informed decisions regarding the COVID restrictions such as shutdowns.
+
+\newpage
 
 # Data
 
@@ -25,6 +34,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Dataset
 
+\newpage
+
 # Discussion
+
+\newpage
 
 # References

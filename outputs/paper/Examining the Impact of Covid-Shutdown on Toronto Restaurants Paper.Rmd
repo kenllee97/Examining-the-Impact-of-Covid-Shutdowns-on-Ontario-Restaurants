@@ -44,7 +44,7 @@ The survey is generated using Microsoft Forms and is set to only one response pe
 More specifically, since we obtain detailed information for these 380 selected sample restaurants, such as email and phone number through Yelp API, the survey will first be conducted through an email survey, where we attach and send the survey link to associated email contact manually and respondents would be given a chance to opt-out of the study, preventing further contact from us. Nevertheless, upon a non-response, a similar follow-up email survey will be sent to reduce non-responses. Again, this survey would give the respondent a second chance to opt-out of this study. At last, if the emails garner no responses, a final phone call survey would be implemented to further reduce non-responses. These email and phone surveys will help us obtain information about each restaurant in these two control and treatment groups after performing the stratified sampling technique for the target population. The survey methodology process would be repeated three times, before the first month to provide the purpose of the experiment and options to opt-out/opt-int, at the end of the first month to have an idea (benchmark) of their usual performance, and at the end of the final month to evaluate the performance of the restaurants after treating half of them with lockdowns. Additionally, respondents will also be informed in the first survey that they will be rewarded after completing all three surveys with an incentive(such as Amazon gift cards) in order to achieve a higher response rate (a track record of the responses would be used to make sure restaurants do not send in two surveys and receive more than one gift card). If any of the restaurants that participated in the first survey decide not to participate in the upcoming surveys, they will not be able to obtain a gift card, and their previous data points in the past survey would be omitted. In fact, since we could not guarantee each respondent will take the survey eventually, weight-class adjustments will be implemented by increasing the sampling weights of respondents to manage the variation caused by unit nonresponses, in order to help us deal with non-response bias which could affect the validity of the research analysis and lead to an underestimation or overestimation of the true outcome.
 
 
-The construction of the survey itself will be free with the Google Form platform and we will conduct the survey through email and phone only in which there will be no cost for sending email survey but an extra expense of calling non-response participants is required. Since the survey will be implemented in April and May, a two-month prepaid phone plan from Koodo mobile which is 25 CAD($) per month with unlimited province-wide calling will be purchased. In addition, each respondent will be rewarded with a 10 $ Amazon gift card after completing all three surveys and the selected sample group for the survey is around 380. The estimated cost of conducting the survey is about 3850 $ where 3800 $ will be used for purchasing Amazon gift cards(10 $ gift card for each respondent), and 50 $ is the payment for a two-month prepaid phone plan(25 $ per month). 
+The construction of the survey itself will be free with the Microsoft Forms platform and we will conduct the survey through email and phone only in which there will be no cost for sending email survey but an extra expense of calling non-response participants is required. Since the survey will be implemented in April and May, a two-month prepaid phone plan from Koodo mobile which is 25 CAD($) per month with unlimited province-wide calling will be purchased. In addition, each respondent will be rewarded with a 10 $ Amazon gift card after completing all three surveys and the selected sample group for the survey is around 380. The estimated cost of conducting the survey is about 3850 $ where 3800 $ will be used for purchasing Amazon gift cards(10 $ gift card for each respondent), and 50 $ is the payment for a two-month prepaid phone plan(25 $ per month). 
 
 \newpage
 
@@ -95,7 +95,7 @@ simulated_dataset %>%
   scale_fill_brewer(palette = "Set1")
 ```
 
-```{r fig4, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig4, fig.width=10, fig.height=5, fig.cap="Employment Loss by Business Size", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -119,7 +119,7 @@ ggplot(
 
 ```
 
-```{r fig5, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig5, fig.width=10, fig.height=5, fig.cap="Employment Loss by Source of Debt", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -146,7 +146,7 @@ ggplot(
 ```
 
 
-```{r fig6, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig6, fig.width=10, fig.height=5, fig.cap="Employment Loss by Operation Status", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -171,7 +171,7 @@ ggplot(
 ```
 
 
-```{r fig7, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig7, fig.width=10, fig.height=5, fig.cap="Employment Loss by Location", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -200,7 +200,7 @@ ggplot(
 ```
 
 
-```{r fig8, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig8, fig.width=10, fig.height=5, fig.cap="Employment Loss by Number of Customer Reviews", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ################################## numerical vs. numerical
@@ -216,7 +216,7 @@ simulated_dataset %>%
 ```
 
 
-```{r fig9, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig9, fig.width=10, fig.height=5, fig.cap="Employment Loss by Yelp Star Rating", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. numerical variables 
@@ -232,7 +232,7 @@ simulated_dataset %>%
 ```
 
 
-```{r fig10, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig10, fig.width=10, fig.height=5, fig.cap="Employment Loss by Restaurant Price Point", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. numerical variables 
@@ -248,7 +248,7 @@ simulated_dataset %>%
 ```
 
 
-```{r fig11, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig11, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Company Size", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -264,7 +264,7 @@ simulated_dataset %>%
 ```
 
 
-```{r fig12, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig12, fig.width=10, fig.height=5, fig.cap= "Business Survival Outlook by Source of Debt", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -280,7 +280,7 @@ simulated_dataset %>%
 ```
 
 
-```{r fig13, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig13, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Operation Status", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -296,7 +296,7 @@ simulated_dataset %>%
 ```
 
 
-```{r fig14, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig14, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Location", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -313,7 +313,7 @@ simulated_dataset %>%
 
 
 
-```{r fig15, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig15, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Number of Customer Reviews", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -340,7 +340,7 @@ ggplot(
 ```
 
 
-```{r fig16, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig16, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Yelp Star Rating", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -367,7 +367,7 @@ ggplot(
 ```
 
 
-```{r fig17, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+```{r fig17, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Restaurant Price Point", echo = FALSE, regfloat=TRUE}
 
 ################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -401,7 +401,16 @@ ggplot(
 
 \newpage
 
-# Appendix I {-}
+# Appendix I - Survey Screenshots {-}
+
+[Click to view COVID-19 Impact Assessment Survey on Microsoft Forms.](https://forms.office.com/Pages/DesignPage.aspx?auth_pvr=OrgId&auth_upn=youjing.li%40mail.utoronto.ca&lang=en-US&origin=OfficeDotCom&route=Start#FormId=JsKqeAMvTUuQN7RtVsVSEAjdpN_qx5NFt_LaslGa8CtUMEQxM0pSMzRQSkIwS0xKOFBIRzMyNU1aUi4u "COVID-19 Impact Assessment Survey")
+
+![Screenshots of Survey (Instructions)]("../../inputs/survey_opening.png")
+![Screenshots of Survey (Topline Metrics)]("../../inputs/survey_topline.png")
+![Screenshots of Survey (Q4-Q5)]("../../inputs/survey_q4_q5.png")
+![Screenshots of Survey (Q6-Q8)]("../../inputs/survey_q6_q7_q8.png")
+![Screenshots of Survey (Q9-Q10)]("../../inputs/survey_q9_q10.png")
+
 
 \newpage
 

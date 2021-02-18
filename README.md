@@ -2,7 +2,7 @@
 
 ## Project Description
 > This project examines COVID-19's impact on Toronto restaurants. Topline metrics such as revenue shifts, labour changes, and business survivals are simulated and accessed against business characteristics such as size of business, source of debt, current operation status, Yelp star rating, number of customer reviews, price points, and location of the business.
-> All data analysis are performed using R and the following packages are used: `tidyverse`, `tibble`, `tibble`.
+> All data analysis are performed using R and the following packages are used: `tidyverse`, `tibble`, `ggplot2`.
 
 ## Main Contributions
 

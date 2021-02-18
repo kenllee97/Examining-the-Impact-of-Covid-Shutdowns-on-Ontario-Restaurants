@@ -51,9 +51,11 @@ The construction of the survey itself will be free with the Microsoft Forms plat
 # Survey Design
 As discussed in Section 2 Experiment Design, in order to determine how restaurants are coping with COVID-19 in Ontario, a survey is required to collect data pertaining to restaurant operations, finances, and staffing. The short survey consists of 10 questions (see Appendix I) and targets the government's major concerns—revenue shifts, labour changes, and business survivals; these topline metrics are collected from individual restaurants along with differentiating business characteristics such as size of business, source of debt, current operation status, Yelp star rating, number of customer reviews, price points, and location of the business. The aims of this report are to assess how restaurants with varying characteristics are surviving during the pandemic and to predict how lock-down measures in Ontario will impose changes to the already struggling restaurant industry.
 
+The survey is designed for participants to complete in 4 minutes to prevent survey fatigue. A series of numerical and categorical sections are built into the survey and are listed as optional in cases when an answer is unknown or is private to the respondent. The decision to keep all responses optional is to avoid response bias where a false selection is forcefully selected. For categorical responses, the questions are either formatted as a multiple-choice question or as a ranking question on a scale of 1 to 5. Respondents are also free to enter numerical responses in text boxes. Instructions are provided for numerical responses. For revenue and employment, it is assumed that all restaurants are negatively impacted by COVID-19 and losses occurred both in terms of sales and employees. A number “0” is assigned under cases where no losses are observed. Altogether, the survey aimed to predict Ontario’s restaurant industry trends is based on the current COVID-19 pandemic and deliver straightforward results to the government of Ontario. 
+
 ## Simulated Data
 
-## Results
+
 
 
 \newpage
@@ -398,6 +400,16 @@ ggplot(
 \newpage
 
 # Discussion
+
+## Connection to exisiting works
+
+## Main findings
+### Loss in Revnue
+### Loss in Employment
+### Likelihood to Survive
+
+## Connection to exisiting works
+
 
 \newpage
 

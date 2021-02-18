@@ -71,7 +71,7 @@ number_of_observations_control <- 2000
 simulated_dataset_control <- 
   tibble(
     type = rep("Control", number_of_observations_control),
-    Q1 = rpois(n = number_of_observations_treated, lambda = 37.2), 
+    Q1 = rpois(n = number_of_observations_control, lambda = 37.2), 
     Q2 = rnorm(n = number_of_observations_control, mean = 45, sd = 5) %>% round(digits = 0) %>% abs(), 
     Q3 = sample(x = c(
       "5-Extremely",

@@ -11,6 +11,16 @@ bibliography: references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+#############################TESTING
+#### Workspace setup ####
+library(tidyverse)
+library(tibble)
+library(ggplot2)
+
+# Load dataset
+simulated_dataset <- readr::read_csv("../../inputs/simulated_dataset.csv")
+
 ```
 
 \newpage
@@ -24,14 +34,12 @@ For this research, we will first describe the intervention of this experiment wh
 
 \newpage
 
-# Data
+# Experiment Design
 
 ## Intervention
 
-## Survey
-
-### Methodology
-The survey is generated using Google Form and is set to only one response per user to avoid duplicate responses. In addition, the survey includes an explanation of the experiment, denoting how the experiment will be conducted and upcoming surveys that they would still need to fill out in the following two months. For instance, it would explain how they would be allowed to operate normally in the first month, but some may be randomly picked to be shut-down in the second month. Of course, it would also indicate the compensation that would be given to them for shutting down (while also specifying that the compensation would not form part of the restaurant’s revenue as to not intervene with the experiment). Additionally, we will be assuring the participants that their data would ultimately be anonymous and stored safely for their privacy, ensuring there are no privacy concerns and increasing the response rate.  After all, the research data we collect from responsive surveys will fall under the Municipal Freedom of Information and Protection of Privacy Act[@citeLit6]. Personal information such as the respondent’s location, or opinions will be encoded into different classifications to hide sensitive personal information, and also the survey will be conducted anonymously to ensure all information is handled in a de-identified manner. The information we collect, use and analyze will not disclose to any third-party and only for research-purpose which comply with privacy protection provisions of the Acts. At last, the survey explanation would also include the importance of this study as it could inform government plans regarding how restaurants’ laws are imposed. This would encourage respondents to answer the surveys, reducing the non responses. Of course, we made sure to state that their responses would not directly affect, but just inform government decisions, as some respondents may want to answer dishonestly to affect potential governmental outcomes.
+## Methodology
+The survey is generated using Microsoft Forms and is set to only one response per user to avoid duplicate responses. In addition, the survey includes an explanation of the experiment, denoting how the experiment will be conducted and upcoming surveys that they would still need to fill out in the following two months. For instance, it would explain how they would be allowed to operate normally in the first month, but some may be randomly picked to be shut-down in the second month. Of course, it would also indicate the compensation that would be given to them for shutting down (while also specifying that the compensation would not form part of the restaurant’s revenue as to not intervene with the experiment). Additionally, we will be assuring the participants that their data would ultimately be anonymous and stored safely for their privacy, ensuring there are no privacy concerns and increasing the response rate.  After all, the research data we collect from responsive surveys will fall under the Municipal Freedom of Information and Protection of Privacy Act[@citeLit6]. Personal information such as the respondent’s location, or opinions will be encoded into different classifications to hide sensitive personal information, and also the survey will be conducted anonymously to ensure all information is handled in a de-identified manner. The information we collect, use and analyze will not disclose to any third-party and only for research-purpose which comply with privacy protection provisions of the Acts. At last, the survey explanation would also include the importance of this study as it could inform government plans regarding how restaurants’ laws are imposed. This would encourage respondents to answer the surveys, reducing the non responses. Of course, we made sure to state that their responses would not directly affect, but just inform government decisions, as some respondents may want to answer dishonestly to affect potential governmental outcomes.
 
 More specifically, since we obtain detailed information for these 380 selected sample restaurants, such as email and phone number through Yelp API, the survey will first be conducted through an email survey, where we attach and send the survey link to associated email contact manually and respondents would be given a chance to opt-out of the study, preventing further contact from us. Nevertheless, upon a non-response, a similar follow-up email survey will be sent to reduce non-responses. Again, this survey would give the respondent a second chance to opt-out of this study. At last, if the emails garner no responses, a final phone call survey would be implemented to further reduce non-responses. These email and phone surveys will help us obtain information about each restaurant in these two control and treatment groups after performing the stratified sampling technique for the target population. The survey methodology process would be repeated three times, before the first month to provide the purpose of the experiment and options to opt-out/opt-int, at the end of the first month to have an idea (benchmark) of their usual performance, and at the end of the final month to evaluate the performance of the restaurants after treating half of them with lockdowns. Additionally, respondents will also be informed in the first survey that they will be rewarded after completing all three surveys with an incentive(such as Amazon gift cards) in order to achieve a higher response rate (a track record of the responses would be used to make sure restaurants do not send in two surveys and receive more than one gift card). If any of the restaurants that participated in the first survey decide not to participate in the upcoming surveys, they will not be able to obtain a gift card, and their previous data points in the past survey would be omitted. In fact, since we could not guarantee each respondent will take the survey eventually, weight-class adjustments will be implemented by increasing the sampling weights of respondents to manage the variation caused by unit nonresponses, in order to help us deal with non-response bias which could affect the validity of the research analysis and lead to an underestimation or overestimation of the true outcome.
 
@@ -40,7 +48,352 @@ The construction of the survey itself will be free with the Google Form platform
 
 \newpage
 
-### Dataset
+# Survey Design
+As discussed in Section 2 Experiment Design, in order to determine how restaurants are coping with COVID-19 in Ontario, a survey is required to collect data pertaining to restaurant operations, finances, and staffing. The short survey consists of 10 questions (see Appendix I) and targets the government's major concerns—revenue shifts, labour changes, and business survivals; these topline metrics are collected from individual restaurants along with differentiating business characteristics such as size of business, source of debt, current operation status, Yelp star rating, number of customer reviews, price points, and location of the business. The aims of this report are to assess how restaurants with varying characteristics are surviving during the pandemic and to predict how lock-down measures in Ontario will impose changes to the already struggling restaurant industry.
+
+## Simulated Data
+
+## Results
+
+
+\newpage
+```{r fig1, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Revenue Loss", echo = FALSE, regfloat=TRUE}
+#Describe Q1
+simulated_dataset %>% 
+  ggplot(aes(x = Q1, fill = type)) +
+  geom_histogram(position="dodge") +
+  theme_minimal() +
+  labs(x = "Revenue Loss Past Month (%))",
+       y = "Number of restaurants",
+       fill = "Assignment") +
+  scale_fill_brewer(palette = "Set1")
+
+```
+
+
+```{r fig2, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Employment Loss", echo = FALSE, regfloat=TRUE}
+#Describe Q2
+simulated_dataset %>% 
+  ggplot(aes(x = Q2, fill = type)) +
+  geom_histogram(position="dodge") +
+  theme_minimal() +
+  labs(x = "Employment Loss Past Month (%))",
+       y = "Number of restaurants",
+       fill = "Assignment") +
+  scale_fill_brewer(palette = "Set1")
+
+```
+
+```{r fig3, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+#Describe Q3
+simulated_dataset %>% 
+  ggplot(aes(x = Q3, fill=type)) +
+  geom_bar(position = 'dodge') +
+  labs(x = "How worried restaurant owners are toward closing permanantly",
+       y = "Number of restaurants") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1")
+```
+
+```{r fig4, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+#2v4
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q4,
+                      labels = c("Micro",
+                                 "Small",
+                                 "Medium")), 
+           x = Q2, 
+           color = Q4)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(x = "% Loss in employment",
+       y = "") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+```{r fig5, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+#2v5
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q5,
+                      labels = c("Rent",
+                                "Paying vendors",
+                                "Business taxes",
+                                "Payroll",
+                                "Insurance")), 
+           x = Q2, 
+           color = Q5)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(x = "% Loss in employment",
+       y = "") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+
+```{r fig6, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+#2v6
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q6,
+                      labels = c("Open",
+                                 "New",
+                                 "Closed")), 
+           x = Q2, 
+           color = Q6)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(x = "% Loss in employment",
+       y = "") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+
+```{r fig7, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+   
+#2v10
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q10,
+                      labels = c("Toronto",
+                                  "Ottawa",
+                                  "Hamilton",
+                                  "London",
+                                  "Thunder Bay"
+                                  )), 
+           x = Q2, 
+           color = Q10)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(x = "% Loss in employment",
+       y = "") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+
+```{r fig8, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+################################## numerical vs. numerical
+# 2v7
+simulated_dataset %>% 
+  ggplot(aes(x = Q7, y = Q2, color = type)) +
+  geom_point() +
+  theme_minimal() +
+  labs(x = "Number of customer reviews",
+       y = "% Loss in employment",
+       color = "Assignment") +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+```{r fig9, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+############# numerical vs. numerical variables 
+# 2v8
+simulated_dataset %>% 
+  ggplot(aes(x = Q8, y = Q2, color = type)) +
+  geom_point() +
+  theme_minimal() +
+  labs(x = "Yelp star rating",
+       y = "% Loss in employment",
+       color = "Assignment") +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+```{r fig10, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
+############# numerical vs. numerical variables 
+# 2v9
+simulated_dataset %>% 
+  ggplot(aes(x = Q9, y = Q2, color = type)) +
+  geom_point() +
+  theme_minimal() +
+  labs(x = "Yelp price point",
+       y = "% Loss in employment",
+       color = "Assignment") +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+```{r fig11, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
+################################## categorical vs. categorical
+# 3v4
+simulated_dataset %>% 
+  ggplot(aes(x = Q3, 
+             fill = Q4)) + 
+  geom_bar(position = "fill") +
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  theme_minimal() +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+```{r fig12, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
+################################## categorical vs. categorical
+# 3v5
+simulated_dataset %>% 
+  ggplot(aes(x = Q3, 
+             fill = Q5)) + 
+  geom_bar(position = "fill") +
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  theme_minimal() +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+```{r fig13, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
+################################## categorical vs. categorical
+# 3v6
+simulated_dataset %>% 
+  ggplot(aes(x = Q3, 
+             fill = Q6)) + 
+  geom_bar(position = "fill") +
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  theme_minimal() +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+```{r fig14, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
+################################## categorical vs. categorical
+# 3v10
+simulated_dataset %>% 
+  ggplot(aes(x = Q3, 
+             fill = Q10)) + 
+  geom_bar(position = "fill") +
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  theme_minimal() +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")
+```
+
+
+
+```{r fig15, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+
+#3v7
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q3,
+                      labels = c(      "5-Extremely",
+      "4-Very",
+      "3-Moderately",
+      "2-Slightly",
+      "1-Not at all")), 
+           x = Q7, 
+           color = Q3)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(y = "How worried restaurant owners are toward closing permanantly",
+       x = "Number of customer reviews") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+```{r fig16, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+
+#3v8
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q3,
+                      labels = c(      "5-Extremely",
+      "4-Very",
+      "3-Moderately",
+      "2-Slightly",
+      "1-Not at all")), 
+           x = Q8, 
+           color = Q3)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(y = "How worried restaurant owners are toward closing permanantly",
+       x = "Yelp star rating") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+
+```{r fig17, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+
+################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
+############# numerical vs. categorical variables 
+
+#3v9
+simulated_dataset %>% 
+ggplot( 
+       aes(y = factor(Q3,
+                      labels = c(      "5-Extremely",
+      "4-Very",
+      "3-Moderately",
+      "2-Slightly",
+      "1-Not at all")), 
+           x = Q9, 
+           color = Q3)) +
+  geom_jitter(alpha = 0.7,
+              size = 1.5) + 
+  labs(y = "How worried restaurant owners are toward closing permanantly",
+       x = "Price point") +
+  facet_wrap(vars(type)) +
+  scale_color_brewer(palette = "Set1")+
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+```
 
 \newpage
 
@@ -48,4 +401,9 @@ The construction of the survey itself will be free with the Google Form platform
 
 \newpage
 
+# Appendix I {-}
+
+\newpage
+
 # References
+

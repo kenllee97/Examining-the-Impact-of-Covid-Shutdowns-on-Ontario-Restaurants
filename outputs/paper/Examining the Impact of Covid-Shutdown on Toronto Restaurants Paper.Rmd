@@ -13,6 +13,10 @@ bibliography: references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
+
 #############################TESTING
 #### Workspace setup ####
 library(tinytex)
@@ -54,7 +58,7 @@ To carry out this calculation, we set the margin of error, e, the maximum distan
 The stratified sampling technique helps to generate a more equal representation of characteristics in the sample group since we classify their features before distributing them directly into control and intervention groups, and also to maintain a lower sampling error in estimation, as well as a lower standard deviation. Therefore, any variations of outcomes between the control and treatment groups could be considered by the intervention only.
 The next step of this study is to find two months in the year where restaurants are historically proven to have similar performances and then separating the control group and the treatment in our intervention. This will allow us to measure their usual performance and avoid counterfeit counterfactual mistakes.
 
-To do so, we found the monthly survey of food services and drinking places dataset contains aggregated data of monthly sales amount for restaurants in different geographies since 1998 [@RData]. We filtered the dataset to only the geography as Ontario, and limited the time period from 2016 to 2019. There were 47 observations in the dataset and 3 attributes: month, the year of that month and Total Sales. An additional attribute to reflect monthly sales change was created during analysis by subtracting the total sales of the current month from the total sales of the previous month, and divided by the latter. The observations were aggregated by different months, we then calculated the average sales change in each month. \@ref(fig:fig20)) below compares the average percentage change (compared with the previous month) of Ontario’s restaurant monthly sales across different months from 2016 to 2019. The result indicates restaurants in Ontario have the most similar business performances in April and May. 
+To do so, we found the monthly survey of food services and drinking places dataset contains aggregated data of monthly sales amount for restaurants in different geographies since 1998 [@RData]. We filtered the dataset to only the geography as Ontario, and limited the time period from 2016 to 2019. There were 47 observations in the dataset and 3 attributes: month, the year of that month and Total Sales. An additional attribute to reflect monthly sales change was created during analysis by subtracting the total sales of the current month from the total sales of the previous month, and divided by the latter. The observations were aggregated by different months, we then calculated the average sales change in each month. Figure \@ref(fig:fig20) below compares the average percentage change (compared with the previous month) of Ontario’s restaurant monthly sales across different months from 2016 to 2019. The result indicates restaurants in Ontario have the most similar business performances in April and May. 
 
 ```{r fig20, fig.cap= "Ontario's restaruants business performances", echo = FALSE, warning=FALSE,regfloat=TRUE}
 Month_performance_data<- read.csv(here::here("inputs/Month_performance_data.csv"))
@@ -80,8 +84,6 @@ More specifically, since we obtain detailed information for these 380 selected s
 
 The construction of the survey itself will be free with the Microsoft Forms platform and we will conduct the survey through email and phone only in which there will be no cost for sending email survey but an extra expense of calling non-response participants is required. Since the survey will be implemented in April and May, a two-month prepaid phone plan from Koodo mobile which is 25 CAD($) per month with unlimited province-wide calling will be purchased. In addition, each respondent will be rewarded with a 10 $ Amazon gift card after completing all three surveys and the selected sample group for the survey is around 380. The estimated cost of conducting the survey is about 3850 $ for each city  where 3800 $ will be used for purchasing Amazon gift cards(10 $ gift card for each respondent), and 50 $ is the payment for a two-month prepaid phone plan(25 $ per month). Applying a risk factor of 15% and setting the number of sampled cities to 5, a total cost of $22137 is estimated to provide flexibility in budgets and to accommodate cases where more respondents are sampled. Labour costs are factored out of the costs since Petit Poll is a non-profit organization.
 
-\newpage
-
 # Survey Design
 As discussed in Section 2 Experiment Design, in order to determine how restaurants are coping with COVID-19 in Ontario, a survey is required to collect data pertaining to restaurant operations, finances, and staffing. The short survey consists of 10 questions (see Appendix I) and targets the government's major concerns—revenue shifts, labour changes, and business survivals; these topline metrics are collected from individual restaurants along with differentiating business characteristics such as size of business, source of debt, current operation status, Yelp star rating, number of customer reviews, price points, and location of the business. The aims of this report are to assess how restaurants with varying characteristics are surviving during the pandemic and to predict how lock-down measures in Ontario will impose changes to the already struggling restaurant industry.
 
@@ -95,12 +97,14 @@ These 3 topline metrics—revenue loss, employment loss, and outlook on business
 
 The sampling size for both the control and treated groups are set to 2000 to accommodate for the 5 cities identified (see Appendix I). Approximately 400 datapoints are collected from each city to ensure that the minimum sampling size of 380 is met (see Section 2 Experiment Design).  
 
-\newpage
 ```{r fig1, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Revenue Loss", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 #Describe Q1
 simulated_dataset %>% 
   ggplot(aes(x = Q1, fill = type)) +
-  geom_histogram(position="dodge") +
+  geom_histogram(position="dodge", bins=30) +
   theme_minimal() +
   labs(x = "Revenue Loss Past Month (%))",
        y = "Number of restaurants",
@@ -111,10 +115,13 @@ simulated_dataset %>%
 
 
 ```{r fig2, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Employment Loss", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 #Describe Q2
 simulated_dataset %>% 
   ggplot(aes(x = Q2, fill = type)) +
-  geom_histogram(position="dodge") +
+  geom_histogram(position="dodge", bins=30) +
   theme_minimal() +
   labs(x = "Employment Loss Past Month (%))",
        y = "Number of restaurants",
@@ -124,6 +131,9 @@ simulated_dataset %>%
 ```
 
 ```{r fig3, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Outlook on Business Survival", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 #Describe Q3
 simulated_dataset %>% 
   ggplot(aes(x = Q3, fill=type)) +
@@ -135,9 +145,13 @@ simulated_dataset %>%
 ```
 
 ```{r fig4, fig.width=10, fig.height=5, fig.cap="Employment Loss by Business Size", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
+
 #2v4
 simulated_dataset %>% 
 ggplot( 
@@ -162,6 +176,9 @@ ggplot(
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 #2v5
 simulated_dataset %>% 
 ggplot( 
@@ -186,6 +203,9 @@ ggplot(
 
 
 ```{r fig6, fig.width=10, fig.height=5, fig.cap="Employment Loss by Operation Status", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -211,6 +231,9 @@ ggplot(
 
 
 ```{r fig7, fig.width=10, fig.height=5, fig.cap="Employment Loss by Location", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. categorical variables 
@@ -240,6 +263,9 @@ ggplot(
 
 
 ```{r fig8, fig.width=10, fig.height=5, fig.cap="Employment Loss by Number of Customer Reviews", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ################################## numerical vs. numerical
@@ -256,6 +282,8 @@ simulated_dataset %>%
 
 
 ```{r fig9, fig.width=10, fig.height=5, fig.cap="Employment Loss by Yelp Star Rating", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. numerical variables 
@@ -272,6 +300,8 @@ simulated_dataset %>%
 
 
 ```{r fig10, fig.width=10, fig.height=5, fig.cap="Employment Loss by Restaurant Price Point", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
 
 ################################# COMPARE LAYOFFS(Q2) AGAINST DIFFERENT FACTORS
 ############# numerical vs. numerical variables 
@@ -288,6 +318,8 @@ simulated_dataset %>%
 
 
 ```{r fig11, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Company Size", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -296,7 +328,7 @@ simulated_dataset %>%
   ggplot(aes(x = Q3, 
              fill = Q4)) + 
   geom_bar(position = "fill") +
-  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "proportion")+
   theme_minimal() +
   facet_wrap(vars(type)) +
   scale_color_brewer(palette = "Set1")
@@ -304,6 +336,8 @@ simulated_dataset %>%
 
 
 ```{r fig12, fig.width=10, fig.height=5, fig.cap= "Business Survival Outlook by Source of Debt", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -312,30 +346,16 @@ simulated_dataset %>%
   ggplot(aes(x = Q3, 
              fill = Q5)) + 
   geom_bar(position = "fill") +
-  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "proportion")+
   theme_minimal() +
   facet_wrap(vars(type)) +
   scale_color_brewer(palette = "Set1")
 ```
 
 
-```{r fig13, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Operation Status", echo = FALSE, regfloat=TRUE}
-
-################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
-################################## categorical vs. categorical
-# 3v6
-simulated_dataset %>% 
-  ggplot(aes(x = Q3, 
-             fill = Q6)) + 
-  geom_bar(position = "fill") +
-  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
-  theme_minimal() +
-  facet_wrap(vars(type)) +
-  scale_color_brewer(palette = "Set1")
-```
-
-
-```{r fig14, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Location", echo = FALSE, regfloat=TRUE}
+```{r fig13, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Location", echo = FALSE, regfloat=TRUE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
 
 ################################# COMPARE WORRINESS(Q3) AGAINST DIFFERENT FACTORS
 ################################## categorical vs. categorical
@@ -344,95 +364,12 @@ simulated_dataset %>%
   ggplot(aes(x = Q3, 
              fill = Q10)) + 
   geom_bar(position = "fill") +
-  labs(x="How worried restaurant owners are toward closing permanantly",y = "porportion")+
+  labs(x="How worried restaurant owners are toward closing permanantly",y = "proportion")+
   theme_minimal() +
   facet_wrap(vars(type)) +
   scale_color_brewer(palette = "Set1")
 ```
 
-
-
-```{r fig15, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Number of Customer Reviews", echo = FALSE, regfloat=TRUE}
-
-################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
-############# numerical vs. categorical variables 
-
-#3v7
-simulated_dataset %>% 
-ggplot( 
-       aes(y = factor(Q3,
-                      labels = c(      "5-Extremely",
-      "4-Very",
-      "3-Moderately",
-      "2-Slightly",
-      "1-Not at all")), 
-           x = Q7, 
-           color = Q3)) +
-  geom_jitter(alpha = 0.7,
-              size = 1.5) + 
-  labs(y = "How worried restaurant owners are toward closing permanantly",
-       x = "Number of customer reviews") +
-  facet_wrap(vars(type)) +
-  scale_color_brewer(palette = "Set1")+
-  theme_minimal() +
-  theme(legend.position = "none")
-```
-
-
-```{r fig16, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Yelp Star Rating", echo = FALSE, regfloat=TRUE}
-
-################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
-############# numerical vs. categorical variables 
-
-#3v8
-simulated_dataset %>% 
-ggplot( 
-       aes(y = factor(Q3,
-                      labels = c(      "5-Extremely",
-      "4-Very",
-      "3-Moderately",
-      "2-Slightly",
-      "1-Not at all")), 
-           x = Q8, 
-           color = Q3)) +
-  geom_jitter(alpha = 0.7,
-              size = 1.5) + 
-  labs(y = "How worried restaurant owners are toward closing permanantly",
-       x = "Yelp star rating") +
-  facet_wrap(vars(type)) +
-  scale_color_brewer(palette = "Set1")+
-  theme_minimal() +
-  theme(legend.position = "none")
-```
-
-
-```{r fig17, fig.width=10, fig.height=5, fig.cap="Business Survival Outlook by Restaurant Price Point", echo = FALSE, regfloat=TRUE}
-
-################################# COMPARE Q3 AGAINST DIFFERENT FACTORS
-############# numerical vs. categorical variables 
-
-#3v9
-simulated_dataset %>% 
-ggplot( 
-       aes(y = factor(Q3,
-                      labels = c(      "5-Extremely",
-      "4-Very",
-      "3-Moderately",
-      "2-Slightly",
-      "1-Not at all")), 
-           x = Q9, 
-           color = Q3)) +
-  geom_jitter(alpha = 0.7,
-              size = 1.5) + 
-  labs(y = "How worried restaurant owners are toward closing permanantly",
-       x = "Price point") +
-  facet_wrap(vars(type)) +
-  scale_color_brewer(palette = "Set1")+
-  theme_minimal() +
-  theme(legend.position = "none")
-
-
-```
 
 \newpage
 
@@ -441,11 +378,22 @@ ggplot(
 ## Connection to exisiting works
 
 ## Main findings
+
 ### Loss in Revnue
+
+Figure \@ref(fig:fig1) shows the loss in revenue for control and treated scenarios. It is clear from the graph that more losses in sales are expected when lockdown measurements are in place compared to a time where lockdown measures are removed. While sharing a relatively symmetric distribution centered around 42%, restaurants that are in the control group primarily fall in the 30-40% range whereas the treated group has more restaurants with declines over 40%. That is why a bimodal shape is observed in Figure \@ref(fig:fig1). The overlapped distributions present the likelihood that similar declines will be witnessed for the two groups. Perhaps the overlapped distribution explains a scenario if we were to implement on and off containment measures in the same month. From Figure \@ref(fig:fig1), the most probable decline resulting from fluctuating containment measures would be around 42%--the peak of overlap.  
+
 ### Loss in Employment
+
+Figure \@ref(fig:fig2) shows the loss in employment in the restaurants sampled. Compared to the loss in revenue observed in Figure \@ref(fig:fig1), Figure \@ref(fig:fig2) shows a greater overlap, indicating less dramatic changes in employment as lockdown measures are implemented. Because the changes in employment are more subtle, the loss in employment are also evaluated against varying business characteristics to see if there are differences is examined amongst businesses who operate differently. From Figure \@ref(fig:fig4) to Figure \@ref(fig:fig7), the loss in employment is mapped against factors such as size of business, source of debt, their location and operation status. We can see that from these graphs that control and treated groups are very similar in their fixed properties but differ in range for loss of employment—majority of the data fall in the 35% to 55% range for the control group whereas for the treated group, the range of decline is shifted 5% to the 40% to 60% range. Since both scenarios, controlled or treated, are simulated using a normal distribution with the same standard deviation, Figure \@ref(fig:fig8), Figure \@ref(fig:fig9), and Figure \@ref(fig:fig10) are symmetric in shape when we plot employment loss against locations, customer reviews, and Yelp star ratings.
+
 ### Likelihood to Survive
 
-## Connection to exisiting works
+As discussed in Section 3.1 Simulated Data, the likelihood that a business will survive is primarily based on restaurant owners’ perceptions on whether they have enough liquidity to last for 3 more months. From a practical perspective, restaurant owners’ self-perceptions directly impact their decisions on whether they are renewing their business licenses. Therefore, the amount of worry from restaurant owners gives an accurate assessment of the likelihood that a business will survive despite all the revenue losses. The bar charts in Figure \@ref(fig:fig3) show the increasing number of worries from categories “1-not at all worried” to “5-extremely worried”. More restaurants fall under the “5-extremely worried” under treated compared to control. 
+Further investigations from Figure \@ref(fig:fig11) reveal that when controlled (under no lockdown), medium-sized companies never occurred in the “1-not at all worried” category. However, when treated, medium-sized companies take the greatest proportion in the “not at all worried” category compared to the other scales. This trend indicates that when lockdown measures are implemented, the businesses that are smaller in scale tend to shift toward higher levels of worries whereas the medium-sized companies stay relatively calm. Perhaps more government funding is provided for larger sized companies during lockdown, so these businesses have more confidence when lockdown measures are implemented. In Figure \@ref(fig:fig12) and Figure \@ref(fig:fig13), little variations are shown in terms of relative proportions for source of debt and locations. 
+
+## Limitations
+## Future Work
 
 
 \newpage

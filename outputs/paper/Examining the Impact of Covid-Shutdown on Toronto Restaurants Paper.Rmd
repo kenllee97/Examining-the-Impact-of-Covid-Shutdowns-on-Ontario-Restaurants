@@ -5,6 +5,7 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: ""
 output: 
   bookdown::pdf_document2:
+    latex_engine: xelatex
     toc: FALSE
 bibliography: references.bib
 ---
@@ -14,13 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #############################TESTING
 #### Workspace setup ####
+library(tinytex)
 library(tidyverse)
 library(tibble)
 library(ggplot2)
+library(bookdown)
 
 # Load dataset
 simulated_dataset <- readr::read_csv("../../inputs/simulated_dataset.csv")
-
 ```
 
 \newpage
@@ -37,6 +39,38 @@ For this research, we will first describe the intervention of this experiment wh
 # Experiment Design
 
 ## Intervention
+We are going to implement our intervention in Ontario. Based on [@citeLit7], we used before-and after comparisons method to compare the outcomes of the same group of restaurants before and after the intervention within a two-month period from April 2021 to May 2021 to help the client understand the impact of COVID shut-downs on restaurant businesses. 
+
+We first extract a list of 32499 restaurants operating in the Ontario area from Yelp API as the frame, and then apply the stratified sampling method to divide the restaurants into different subgroups(strata) based on common attributes: price, rating, location and the number of reviews into different subgroups and the collection of all strata could fully represent the population which in our case is the restaurant business in the Ontario area. Then we implement the simple random sampling strategy to select an equal number of sample restaurants from each of the subgroups. Based on [@Samplesize], we used the equation below to calculate the sample size.
+
+\begin{equation}
+n= \frac{\frac{Z^2 \times p(1-p)}{e^2}}{1+(\frac{Z^2\times p(1-p)}{e^2N})} (\#eq:sampleSize)
+\end{equation}
+
+Where $$Z$$ is the z score;$$e$$ is the margin of error;$$N$$ is the population size;$$p$$ is the population proportion;$$n$$ is the sample size
+
+To carry out this calculation, we set the margin of error, e, the maximum distance desired for the sample estimated to deviate from the true value, to be 5%. The confidence level, which is a measure of certainty regarding how accurately a sample reflects the population, is set to be 0.95. Z for a 95% confidence level is 1.96. The population proportion, denoted by p, is set to be 0.5, describing a percentage value associated with a population. Thus, the sample size is calculated as 380, which means 380 or more restaurants are needed to have a confidence level of 95% that the real value is within 5% difference of the surveyed value. These 380 restaurants will be the target of our intervention and survey.
+
+The stratified sampling technique helps to generate a more equal representation of characteristics in the sample group since we classify their features before distributing them directly into control and intervention groups, and also to maintain a lower sampling error in estimation, as well as a lower standard deviation. Therefore, any variations of outcomes between the control and treatment groups could be considered by the intervention only.
+The next step of this study is to find two months in the year where restaurants are historically proven to have similar performances and then separating the control group and the treatment in our intervention. This will allow us to measure their usual performance and avoid counterfeit counterfactual mistakes.
+
+To do so, we found the monthly survey of food services and drinking places dataset contains aggregated data of monthly sales amount for restaurants in different geographies since 1998 [@RData]. We filtered the dataset to only the geography as Ontario, and limited the time period from 2016 to 2019. There were 47 observations in the dataset and 3 attributes: month, the year of that month and Total Sales. An additional attribute to reflect monthly sales change was created during analysis by subtracting the total sales of the current month from the total sales of the previous month, and divided by the latter. The observations were aggregated by different months, we then calculated the average sales change in each month. \@ref(fig:fig20)) below compares the average percentage change (compared with the previous month) of Ontario’s restaurant monthly sales across different months from 2016 to 2019. The result indicates restaurants in Ontario have the most similar business performances in April and May. 
+
+```{r fig20, fig.cap= "Ontario's restaruants business performances", echo = FALSE, warning=FALSE,regfloat=TRUE}
+Month_performance_data<- read.csv(here::here("inputs/Month_performance_data.csv"))
+
+ggplot(data=Month_performance_data)+
+  geom_point(aes(color= Month,x= Month,y= Avg_change),size=5)+
+  labs(title = "Monthly total sales change of Ontario restrauants from 2016 to 2019",
+       y= "Percentage change from the previous month",
+       x= "Months")+
+  theme_light()+
+  theme(axis.text.x = element_text(size = 10, angle = 45,face = "bold"))
+```
+
+Based on that, April and May are finally given as our options. The selected group of restaurants in April will be our control group (Group A), which will not be shut-down. The treatment (Group B) will be the selected group of restaurants in May, which will be shut-down. According to [@citeLit7], we believe our treatment and comparison group are the same in at least 3 ways: 1. On average characteristics of treatment and comparison groups should be the same, as restaurants’ performances in April and May are historically proven very similar, restaurants in Group A and Group B are completely same. 2. The treatment should not affect the comparison group either directly or indirectly, as the control group (Group A) occurs before the treatment (Group B). 3. The outcomes of units in the control group should change the same way as outcomes in the treatment group. As a result, the differences between the two groups can only be explained by the existence of shut-down intervention. 
+
+We develop three key metrics to measure the business performance of restaurants in each group, profit or loss can reflect the tendency of restaurant turnovers, business renewals can indicate whether the restaurants plan to continue their business or not, employment will reflect the basic situation of the restaurant labor force. At the end of each month, our survey will be used to collect all the information mentioned above.
 
 ## Methodology
 The survey is generated using Microsoft Forms and is set to only one response per user to avoid duplicate responses. In addition, the survey includes an explanation of the experiment, denoting how the experiment will be conducted and upcoming surveys that they would still need to fill out in the following two months. For instance, it would explain how they would be allowed to operate normally in the first month, but some may be randomly picked to be shut-down in the second month. Of course, it would also indicate the compensation that would be given to them for shutting down (while also specifying that the compensation would not form part of the restaurant’s revenue as to not intervene with the experiment). Additionally, we will be assuring the participants that their data would ultimately be anonymous and stored safely for their privacy, ensuring there are no privacy concerns and increasing the response rate.  After all, the research data we collect from responsive surveys will fall under the Municipal Freedom of Information and Protection of Privacy Act[@citeLit6]. Personal information such as the respondent’s location, or opinions will be encoded into different classifications to hide sensitive personal information, and also the survey will be conducted anonymously to ensure all information is handled in a de-identified manner. The information we collect, use and analyze will not disclose to any third-party and only for research-purpose which comply with privacy protection provisions of the Acts. At last, the survey explanation would also include the importance of this study as it could inform government plans regarding how restaurants’ laws are imposed. This would encourage respondents to answer the surveys, reducing the non responses. Of course, we made sure to state that their responses would not directly affect, but just inform government decisions, as some respondents may want to answer dishonestly to affect potential governmental outcomes.
@@ -44,7 +78,7 @@ The survey is generated using Microsoft Forms and is set to only one response pe
 More specifically, since we obtain detailed information for these 380 selected sample restaurants, such as email and phone number through Yelp API, the survey will first be conducted through an email survey, where we attach and send the survey link to associated email contact manually and respondents would be given a chance to opt-out of the study, preventing further contact from us. Nevertheless, upon a non-response, a similar follow-up email survey will be sent to reduce non-responses. Again, this survey would give the respondent a second chance to opt-out of this study. At last, if the emails garner no responses, a final phone call survey would be implemented to further reduce non-responses. These email and phone surveys will help us obtain information about each restaurant in these two control and treatment groups after performing the stratified sampling technique for the target population. The survey methodology process would be repeated three times, before the first month to provide the purpose of the experiment and options to opt-out/opt-int, at the end of the first month to have an idea (benchmark) of their usual performance, and at the end of the final month to evaluate the performance of the restaurants after treating half of them with lockdowns. Additionally, respondents will also be informed in the first survey that they will be rewarded after completing all three surveys with an incentive(such as Amazon gift cards) in order to achieve a higher response rate (a track record of the responses would be used to make sure restaurants do not send in two surveys and receive more than one gift card). If any of the restaurants that participated in the first survey decide not to participate in the upcoming surveys, they will not be able to obtain a gift card, and their previous data points in the past survey would be omitted. In fact, since we could not guarantee each respondent will take the survey eventually, weight-class adjustments will be implemented by increasing the sampling weights of respondents to manage the variation caused by unit nonresponses, in order to help us deal with non-response bias which could affect the validity of the research analysis and lead to an underestimation or overestimation of the true outcome.
 
 
-The construction of the survey itself will be free with the Microsoft Forms platform and we will conduct the survey through email and phone only in which there will be no cost for sending email survey but an extra expense of calling non-response participants is required. Since the survey will be implemented in April and May, a two-month prepaid phone plan from Koodo mobile which is 25 CAD($) per month with unlimited province-wide calling will be purchased. In addition, each respondent will be rewarded with a 10 $ Amazon gift card after completing all three surveys and the selected sample group for the survey is around 380. The estimated cost of conducting the survey is about 3850 for each city $ where 3800 $ will be used for purchasing Amazon gift cards(10 $ gift card for each respondent), and 50 $ is the payment for a two-month prepaid phone plan(25 $ per month). Applying a risk factor of 15% and setting the number of sampled cities to 5, a total cost of $22137 is estimated to provide flexibility in budgets and to accommodate cases where more respondents are sampled. Labour costs are factored out of the costs since Petit Poll is a non-profit organization.
+The construction of the survey itself will be free with the Microsoft Forms platform and we will conduct the survey through email and phone only in which there will be no cost for sending email survey but an extra expense of calling non-response participants is required. Since the survey will be implemented in April and May, a two-month prepaid phone plan from Koodo mobile which is 25 CAD($) per month with unlimited province-wide calling will be purchased. In addition, each respondent will be rewarded with a 10 $ Amazon gift card after completing all three surveys and the selected sample group for the survey is around 380. The estimated cost of conducting the survey is about 3850 $ for each city  where 3800 $ will be used for purchasing Amazon gift cards(10 $ gift card for each respondent), and 50 $ is the payment for a two-month prepaid phone plan(25 $ per month). Applying a risk factor of 15% and setting the number of sampled cities to 5, a total cost of $22137 is estimated to provide flexibility in budgets and to accommodate cases where more respondents are sampled. Labour costs are factored out of the costs since Petit Poll is a non-profit organization.
 
 \newpage
 

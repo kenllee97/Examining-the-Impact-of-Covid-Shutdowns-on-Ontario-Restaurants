@@ -1,6 +1,7 @@
 #### Workspace set-up ####
 # Libraries
 library(tidyverse)
+library(tibble)
 
 #### Simulate questions ####
 # Q1: How many staff work for you?
@@ -63,7 +64,7 @@ simulated_dataset_treated <-
     ),
     size = number_of_observations_treated,
     replace = TRUE, 
-    prob = c(0.2, 0.2, 0.2, 0.2, 0.2)
+    prob = c(0.58, 0.20, 0.11, 0.08, 0.03)
     )
   )
 
@@ -121,7 +122,7 @@ simulated_dataset_control <-
     ),
     size = number_of_observations_control,
     replace = TRUE, 
-    prob = c(0.2, 0.2, 0.2, 0.2, 0.2)
+    prob = c(0.58, 0.20, 0.11, 0.08, 0.03)
     )
   )
 

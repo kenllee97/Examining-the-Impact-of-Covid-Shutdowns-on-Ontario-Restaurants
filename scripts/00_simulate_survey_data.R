@@ -1,12 +1,31 @@
+#### Preamble ####
+# Purpose: Simulate realistic survey responses to investigate COVID-19's impact on restaurants.
+# Author: Youjing Li
+# Email: youjing.li@utoronto.ca
+# Date: 26 Feburary 2021
+# Prerequisites: -
+# Issues: I want to simulate responses based on survey questions.
+# To do: 
+# - Statistical simulations using Poisson, Normal, and Uniform Distributions.
+# - Realistic probabilities for each outcome.
+
 #### Workspace set-up ####
 # Libraries
 library(tidyverse)
 library(tibble)
 
 #### Simulate questions ####
-# Q1: How many staff work for you?
-# Q2: What was your revenue last month?
-# Q3: What sources of government subsidies did you receive last month?
+# Q1: Total sales decline(%)?
+# Q2: Staffs laid off(%)?
+# Q3: How worried restaurant owners are with respect to loss of liquidity?
+# Q4: Employment size?
+# Q5: Source of business debt?
+# Q6: Current operation status?
+# Q7: Number of customer reviews?
+# Q8: Yelp star rating?
+# Q9: Price points?
+# Q10: Location/city?
+
 # Do this one for treated and once for control and then bring them together
 set.seed(853)
 number_of_observations_treated <- 2000

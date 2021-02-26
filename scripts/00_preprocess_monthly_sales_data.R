@@ -1,10 +1,10 @@
 #### Preamble ####
 # Purpose: To compare between sales across all seasons.
-# Author: Youjing Li
-# Email: youjing.li@utoronto.ca
-# Date: 26 Feburary 2021
+# Author: Renjing Liu (Max)
+# Email: renjing.liu@mail.utoronto.ca
+# Date: 26 February 2021
 # Prerequisites: -
-# Issues: I want to see the sales differences acorss all time periods of the year.
+# Issues: I want to see the sales differences across all time periods of the year.
 # To do: 
 # - Select 2 months that have the smallest difference.
 

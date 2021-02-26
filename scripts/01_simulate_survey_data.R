@@ -2,7 +2,7 @@
 # Purpose: Simulate realistic survey responses to investigate COVID-19's impact on restaurants.
 # Author: Youjing Li
 # Email: youjing.li@utoronto.ca
-# Date: 26 Feburary 2021
+# Date: 26 February 2021
 # Prerequisites: -
 # Issues: I want to simulate responses based on survey questions.
 # To do: 

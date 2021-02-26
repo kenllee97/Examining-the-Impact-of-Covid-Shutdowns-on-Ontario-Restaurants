@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: To compare between sales across all seasons.
+# Purpose: Using csv file downloaded from Statistics Canada to compare between food sales across all seasons.
 # Author: Renjing Liu (Max)
 # Email: renjing.liu@mail.utoronto.ca
 # Date: 26 February 2021
@@ -15,7 +15,7 @@ library(ggplot2)
 library(tidyverse)
 
 #read inputs
-Df<- read_csv(here::here("inputs/2110001901-noSymbol.csv"))
+Df<- read_csv(here::here("inputs/2110001901-noSymbol.csv")) #file directly downloaded from Statistics Canada (https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=2110001901)
 Df<- Df%>%
   filter(Geography=="Ontario")
 
@@ -45,7 +45,7 @@ Ontario_data<- separate(data= Ontario_data,
                         remove = TRUE,
                         into= c("Month","Year"))
 
-#### Data cleaning ####
+#### Caculating percent change on a month-to-month basis####
 Ontario_data$percentage_change= abs(Ontario_data$percentage_change*100)
 
 Month_compare<- Ontario_data%>%

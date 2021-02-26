@@ -4,11 +4,11 @@ subtitle: "The Potential Loss of Income and Employment"
 author: "Youjing Li, Ken Lee, Renjing Liu, Jialin Zhao"
 thanks: "Code and data are available at: https://github.com/kenllee97/Examining-the-Impact-of-Covid-Shutdowns-on-Ontario-Restaurants"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "Covid-19 has had an immense impact on countries around the world, prompting governments to invoke restrictions balancing between the physical health and the economic health of their constituents. This research paper will focus on exploring the potential effects of government shutdowns on Ontario restaurants, the heart of local economies and communities. More specifically, we will conduct a randomized controlled trial on the effect of shutdowns on restaurants, using stratified random sampling and clustering to gather representative and controlled samples, while using simple random sampling to implement the shutdowns (treatment). All in all, the potential income and employment losses discovered from this experiment and its surveys will not just help us understand the impact of shutdowns on restaurants, but inform prospective policies and programs developed by government officials."
 output: 
   bookdown::pdf_document2:
-    latex_engine: xelatex
-    toc: TRUE
+    toc: true
+    toc_depth: 2
+abstract: "Covid-19 has had an immense impact on countries around the world, prompting governments to invoke restrictions balancing between the physical health and the economic health of their constituents. This research paper will focus on exploring the potential effects of government shutdowns on Ontario restaurants, the heart of local economies and communities. More specifically, we will conduct a randomized controlled trial on the effect of shutdowns on restaurants, using stratified random sampling and clustering to gather representative and controlled samples, while using simple random sampling to implement the shutdowns (treatment). All in all, the potential income and employment losses discovered from this experiment and its surveys will not just help us understand the impact of shutdowns on restaurants, but inform prospective policies and programs developed by government officials."
 bibliography: references.bib
 ---
 
@@ -24,6 +24,7 @@ library(tidyverse)
 library(tibble)
 library(ggplot2)
 library(bookdown)
+library(kableExtra)
 
 # Load dataset
 simulated_dataset <- readr::read_csv("../../inputs/simulated_dataset.csv")
@@ -37,8 +38,6 @@ Local businesses, especially restaurants, are the soul of many cities, providing
 Therefore, this paper will focus on examining the effects of COVID shutdowns on restaurants, taking into account factors such as the net profit/loss of the businesses, the permanent closure of the restaurant, number of employees, wages, and food price. After all, shutting down a restaurant does not just affect the restaurant owners, as people may lose their jobs, have their wage/salary decrease, and prices for food may increase to compensate for losses.
 
 For this research, we will first describe the intervention of this experiment where randomized controlled trial testing will be conducted on a sample of the restaurant population in Ontario. The methodology involved will then be defined, illustrating how we will be observing the restaurants, what will be measured, the population and sample of the experiment, and the predicted cost of gathering the data. At last, upon denoting all the details of our experiment’s intervention method and survey methodology, we will be exploring our findings of the effects of COVID shutdowns on restaurants in the discussion section. All in all, this study will highlight the potential losses in profits and employment caused by restaurant shutdowns, helping Ontario government officials make better-informed decisions regarding the COVID restrictions such as shutdowns.
-
-\newpage
 
 # Experiment Design
 
@@ -60,7 +59,6 @@ Equation 1:
 n= \frac{\frac{Z^2 \times p(1-p)}{e^2}}{1+(\frac{Z^2\times p(1-p)}{e^2N})} (\#eq:sampleSize)
 \end{equation}
 
-\newpage
 
 Where $Z$ is the z score; $e$ is the margin of error;$N$ is the population size; $p$ is the population proportion; $n$ is the sample size
 
@@ -121,8 +119,6 @@ The construction of the survey itself will be free with the Google Form platform
 
 In terms of costs, the government compensation checks are estimated to be around a total of $10 million. The estimated cost of the additional Amazon gift cards would amount to a total of $40,000, while the two-month prepaid phone plan would amount to $50 ($25 per month). Fortunately for the experiment, the manual labour of sending out surveys, and checking up on the restaurants (Making sure they are not violating the terms of the experiment) would be conducted by a group of unpaid interns happy to gain experience. All in all, the total cost of the experiment would be $10 million and $40,050, where the government would be subsidizing the $10 million worth of checks, and we would be responsible for the $40,050.
 
-\newpage
-
 # Survey Design and Data
 
 ## Survey
@@ -133,7 +129,7 @@ The survey is designed for participants to complete in 4 minutes to prevent surv
 
 ## Simulated Data
 
-For the simulation, we use R [@citeR] and packages such as "Tidyverse" [@citeTidy] to analyze the data. Additionally, R packages like "knitr" [@citeKnitr] and “tinytex” [@citett] were used to compile and create this PDF file. AT last, "ggplot2" [@citeGG] was also used to create graphs and tables. 
+For the simulation, we use R [@citeR] and packages such as "Tidyverse" [@citeTidy] to analyze the data. Additionally, R packages like "knitr" [@citeKnitr] and “tinytex” [@citett] were used to compile and create this PDF file. At last, "ggplot2" [@citeGG] and "kableExtra" [@citeKableExtra] were also used to create graphs and tables. 
 
 Responses are simulated for the control and the treated groups based on trends reported in 2020. At the same time, the validity of derived results is ensured by referring to benchmark measurements from cities that do not have the experiments running. According to Quarterly Forecast from Statistics Canada and Restaurants Canada, a 19% increase in food service sales is expected from April to May if shutdown measures were to be removed; in comparison, if shutdown measures were still in place, a 2% increase is predicted [@restCan]. The drastic difference might be partly caused by the removal of shutdown measures and partly caused by the network effect--some restaurants will see a boost in sales due to other restaurants closing and in turn boosting the average sales. For the purpose of this paper, we will not be simulating the data for the month of April for simplicity and because it does not really play a major role in the main intervention. However, we will be referring to it for our limitations in our discussion section. In other words, this paper and data simulation will focus only on the differences between controlled and treated groups in the same time period (May) to determine possible scenarios when the government of Ontario decides to implement shutdown measures.
 
@@ -141,7 +137,53 @@ Question 1 asks for the total sales decline in percentage compared to the same m
 
 These 3 topline metrics—revenue loss, employment loss, and outlook on business survival—are evaluated against fixed characteristics like size of the business, source of debt, current operation status, Yelp star rating, number of customer reviews, price points, and location of the business. In Ontario, 25% of the restaurants operate on a “Micro” scale with 1-4 employees, 73% of restaurants are “Small” with 5-99 employees, and 2% are “Medium” businesses with 100-499 employees[@govCan]. Sources of debt are based on survey results and range from 44% to 76% for each of the categories sampled—rent, vendors, taxes, payroll, and insurance [@restCan]. Since the experiment aids to measure the effect of shutdown measures on control and treated groups, more than 92% of the restaurants will be closed or open depending on the shutdown measures [@yelpCan]. The number of customer reviews is simulated with normal distribution between 0 to 500 since most restaurants have an even distribution of customer reviews [@yelpCan]. Lastly, business characteristics such as Yelp star rating and price points are simulated as normal distributions with a mean of 3.5 and 2.0 respectively [@yelpCan].
 
-The sampling size for both the control and treated groups is set to 2000 to accommodate for the 5 cities identified (see Appendix I), the number is way beyond the minimum sampling size of 380 calculated from Equation 1. 
+At a glance, the average revenue and employment losses appear evenly distributed across cities and restaurants of varying sizes from simple aggregations displayed in Table \@ref(tab:byCity) and Table \@ref(tab:bySize). However, as we dive deeper into the differences between controlled and treated groups, more insights are uncovered and are presented in Figures \@ref(fig:fig1) to \@ref(fig:fig13).
+
+
+```{r byCity, echo = FALSE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+#aggregate data to put into a table:
+#Average revenue loss, average employment loss, grouped by different business size
+by_city <- 
+  simulated_dataset %>%
+  group_by(Q10) %>% 
+  summarise( Average_Revenue_Loss = round(mean(Q1), digits=2),
+    Average_Employment_Loss = round(mean(Q2) , digits = 2)
+  )
+#display the aggregated table with specified column names
+#package kableExtra used here
+by_city %>% 
+  knitr::kable(
+    col.names = c("Selected City", "Average Revenue Loss (%)", "Average Employment Loss (%)"),
+    align = "cccc",
+    caption = "Losses by Location") %>% 
+  kable_styling(latex_options = "hold_position")
+```
+
+
+```{r bySize, echo = FALSE}
+# Suppress summarise info
+options(dplyr.summarise.inform = FALSE)
+#aggregate data to put into a table:
+#Average revenue loss, average employment loss, grouped by different business size
+by_size <- 
+  simulated_dataset %>%
+  group_by(Q4) %>% 
+  summarise( Average_Revenue_Loss = round(mean(Q1), digits=2),
+    Average_Employment_Loss = round(mean(Q2) , digits = 2)
+  )
+#display the aggregated table with specified column names
+#package kableExtra used here
+by_size %>% 
+  knitr::kable(
+    col.names = c("Restaurant Size", "Average Revenue Loss (%)", "Average Employment Loss (%)"),
+    align = "cccc",
+    caption = "Losses by Business Size") %>% 
+  kable_styling(latex_options = "hold_position")
+```
+
+The sampling size for both the control and treated groups is set to 2000 to be inclusive of the 5 cities identified (see Table \@ref(tab:byCity)). 2000 is in consideration of any invalid entries and is way beyond the minimum sampling size of 380 calculated from Equation 1.
 
 ```{r fig1, fig.width=10, fig.height=5, fig.cap="Topline Metrics - Revenue Loss", echo = FALSE, regfloat=TRUE}
 # Suppress summarise info

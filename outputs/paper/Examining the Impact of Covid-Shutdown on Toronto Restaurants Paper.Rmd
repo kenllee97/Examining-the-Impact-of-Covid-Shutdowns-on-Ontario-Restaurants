@@ -1,6 +1,7 @@
 ---
-title: "Examining the Impact of Covid-Shutdown on Toronto Restaurants Paper"
+title: "Examining the Impact of Covid-Shutdown on Toronto Restaurants"
 author: "Youjing Li, Ken Lee, Renjing Liu, Jialin Zhao"
+thanks: "Code and data are available at: https://github.com/kenllee97/Examining-the-Impact-of-Covid-Shutdowns-on-Toronto-Restaurants"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "Covid-19 has had an immense impact on countries around the world, prompting governments to invoke restrictions balancing between the physical health and the economic health of their constituents. This research paper will focus on exploring the potential effects of government shutdowns on Ontario restaurants, the heart of local economies and communities. More specifically, we will conduct a randomized controlled trial on the effect of shutdowns on restaurants, using stratified random sampling and clustering to gather representative and controlled samples, while using simple random sampling to implement the shutdowns (treatment). All in all, the potential income and employment losses discovered from this experiment and its surveys will not just help us understand the impact of shutdowns on restaurants, but inform prospective policies and programs developed by government officials."
 output: 
